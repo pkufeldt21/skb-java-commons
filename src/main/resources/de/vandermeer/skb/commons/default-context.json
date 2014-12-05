@@ -1,0 +1,134 @@
+// Copyright 2010-2014 Sven van der Meer <vdmeer.sven@mykolab.com>
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+// 
+//     http://www.apache.org/licenses/LICENSE-2.0
+// 
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+
+//
+// Configuration file for the De.Vandermeer.SKB.Commons.Config providing default configuration
+//
+// @package    de.vandermeer.skb.commons
+// @author     Sven van der Meer <vdmeer.sven@mykolab.com>
+// @copyright  2010-2014 Sven van der Meer
+// @license    http://www.apache.org/licenses/LICENSE-2.0  Apache License, Version 2.0
+// @version    v0.0.2 build 140626 (26-Jun-14)
+//
+
+{
+	"skb":{
+		"context":{
+			"skb.app.name":{
+				"value.type":"skb.type.string",
+				"value.default":"SKB-Commons"
+			},
+			"skb.app.copyright":{
+				"value.type":"skb.type.string",
+				"value.default":"Copyright (c) 2012-2012 Sven van der Meer <vdmeer.sven@mykolab.com>"
+			},
+			"skb.app.buildwith":{
+				"value.type":"skb.type.string",
+				"value.default":"  Eclipse Juno, (c) the Eclipse Foundation (www.eclipse.org)\n  ANTLR 4.0, (c) Terence Parr <http://www.ANTLR.org>\n  StringTemplate 4.0.7, (c) Terence Parr <http://www.stringtemplate.org>\n  ANTLR IDE <http://antlrv3ide.sourceforge.net/>\n  Apache Commons, (c) The Apache Software Foundation <http://commons.apache.org/>\n"
+			},
+//			"skb.app.additional":{
+//				"value.type":"skb.type.string"
+//				"value.default":"cpp handles #define/#undef, #ifdef/#elsif/#else/#endif, and #include\n	but does miss some of the simpler directives\n	and doesn't follow the cpp spec perfectly\nno support for function overloading yet\n'generate_impl_code' not recursive\n\n"
+//			},
+			"skb.app.version":{
+				"value.type":"skb.type.string",
+				"value.default":"1.0.1"
+			},
+			"skb.app.build":{
+				"value.type":"skb.type.string",
+				"value.default":"120831"
+			},
+			"skb.app.builddate":{
+				"value.type":"skb.type.string",
+				"value.default":"2012-Aug-31"
+			},
+			"skb.clioption.show-version":{
+				"value.type":"skb.type.boolean",
+				"value.default":false,
+				"skb.cli.parameter.short":"v",
+				"skb.cli.parameter.long":"show-version",
+				"skb.cli.parameter.type":"skb.type.boolean",
+				"skb.cli.descr.short":"show version information"
+			},
+			"skb.clioption.show-help":{
+				"value.type":"skb.type.boolean",
+				"value.default":false,
+				"skb.cli.parameter.short":"h",
+				"skb.cli.parameter.long":"show-help",
+				"skb.cli.parameter.type":"skb.type.boolean",
+				"skb.cli.descr.short":"Show usage/help information"
+			},
+			"skb.clioption.cfg-load":{
+				"value.type":"skb.type.boolean",
+				"value.default":false,
+				"skb.cli.parameter.short":"c",
+				"skb.cli.parameter.long":"cfg-load",
+				"skb.cli.parameter.arguments":1,
+				"skb.cli.parameter.type":"skb.type.string",
+				"skb.cli.descr.arguments":"file",
+				"skb.cli.descr.short":"Load configuration options from file (.ini, .xml, .properties)"
+			},
+			"skb.clioption.cfg-save":{
+				"value.type":"skb.type.boolean",
+				"value.default":false,
+				"skb.cli.parameter.short":"w",
+				"skb.cli.parameter.long":"cfg-save",
+				"skb.cli.parameter.arguments":1,
+				"skb.cli.parameter.type":"skb.type.string",
+				"skb.cli.descr.arguments":"file",
+				"skb.cli.descr.short":"Save configuration options to file (.ini, .xml, .properties)"
+			},
+			"skb.clioption.default-options":{
+				"value.type":"skb.type.boolean",
+				"value.default":false,
+				"skb.cli.parameter.short":"d",
+				"skb.cli.parameter.long":"default-options",
+				"skb.cli.parameter.type":"skb.type.boolean",
+				"skb.cli.descr.short":"Show current values for configuration options (config file or command-line)"
+			},
+			"skb.clioption.repmgr-stg":{
+				"value.type":"skb.type.string",
+				"value.default":"de/vandermeer/skb/commons/report-manager.stg",
+				"skb.cli.parameter.long":"repmgr-stg",
+				"skb.cli.parameter.arguments":1,
+				"skb.cli.parameter.type":"skb.type.string",
+				"skb.cli.descr.arguments":"file",
+				"skb.cli.descr.short":"Group template file for report messages"
+			},
+			"skb.clioption.quiet":{
+				"value.type":"skb.type.boolean",
+				"value.default":false,
+				"skb.cli.parameter.short":"q",
+				"skb.cli.parameter.long":"quiet",
+				"skb.cli.parameter.type":"skb.type.boolean",
+				"skb.cli.descr.short":"Quiet mode, no messages to stdout/stderr"
+			},
+			"skb.clioption.verbose":{
+				"value.type":"skb.type.boolean",
+				"value.default":false,
+				"skb.cli.parameter.long":"verbose",
+				"skb.cli.parameter.type":"skb.type.boolean",
+				"skb.cli.descr.short":"Verbose mode, extended messages to stdout/stderr"
+			},
+			"skb.clioption.pr-stg-reportmgr":{
+				"value.type":"skb.type.boolean",
+				"value.default":false,
+				"skb.cli.parameter.long":"pr-stg-reportmgr",
+				"skb.cli.parameter.type":"skb.type.boolean",
+				"skb.cli.descr.short":"Print report manager string-template"
+			}
+		}
+	}
+}

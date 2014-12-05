@@ -1,0 +1,92 @@
+// Copyright 2012-2014 Sven van der Meer <vdmeer.sven@mykolab.com>
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+// 
+//     http://www.apache.org/licenses/LICENSE-2.0
+// 
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+
+//
+// Test file for CLI configuration tests.
+//
+// @package    de.vandermeer.skb.commons.atc
+// @author     Sven van der Meer <vdmeer.sven@mykolab.com>
+// @copyright  2012-2014 Sven van der Meer
+// @license    http://www.apache.org/licenses/LICENSE-2.0  Apache License, Version 2.0
+// @version    v0.0.2 build 140626 (26-Jun-14)
+//
+
+{
+	"skb":{
+		"context":{
+			"testoption.boolean":{
+				"value.type":"skb.type.boolean",
+				"value.default":false,
+				"skb.cli.parameter.short":"b",
+				"skb.cli.parameter.long":"test-boolean",
+				"skb.cli.parameter.type":"skb.type.boolean",
+				"skb.cli.descr.short":"test for boolean"
+			},
+			"testoption.double":{
+				"value.type":"skb.type.double",
+				"value.default":20.8,
+				"skb.cli.parameter.short":"d",
+				"skb.cli.parameter.long":"test-double",
+				"skb.cli.parameter.type":"skb.type.double",
+				"skb.cli.descr.short":"test for double"
+			},
+			"testoption.integer":{
+				"value.type":"skb.type.integer",
+				"value.default":2012,
+				"skb.cli.parameter.short":"i",
+				"skb.cli.parameter.long":"test-integer",
+				"skb.cli.parameter.type":"skb.type.integer",
+				"skb.cli.descr.short":"test for integer"
+			},
+			"testoption.long":{
+				"value.type":"skb.type.long",
+				"value.default":20122013,
+				"skb.cli.parameter.short":"l",
+				"skb.cli.parameter.long":"test-long",
+				"skb.cli.parameter.type":"skb.type.long",
+				"skb.cli.descr.short":"test for long"
+			},
+			"testoption.string":{
+				"value.type":"skb.type.string",
+				"value.default":"default-string",
+				"skb.cli.parameter.short":"s",
+				"skb.cli.parameter.long":"test-string",
+				"skb.cli.parameter.type":"skb.type.string",
+				"skb.cli.descr.short":"test for string"
+			},
+			"testoption.string-w-arg":{
+				"value.type":"skb.type.string",
+				"value.default":"default-string",
+				"skb.cli.parameter.long":"test-string-w-arg",
+				"skb.cli.parameter.type":"skb.type.string",
+				"skb.cli.descr.short":"test for string with argument",
+				"skb.cli.parameter.arguments":1,
+				"skb.cli.descr.arguments":"arg1"
+			}
+
+//			"skb.clioption.cfg-save":{
+//				"value.type":"skb.type.boolean",
+//				"value.default":false,
+//				"skb.cli.parameter.short":"w",
+//				"skb.cli.parameter.long":"cfg-save",
+//				"skb.cli.parameter.arguments":1,
+//				"skb.cli.parameter.type":"skb.type.string",
+//				"skb.cli.descr.arguments":"file",
+//				"skb.cli.descr.short":"Save configuration options to file (.ini, .xml, .properties)"
+//			},
+
+		}
+	}
+}
