@@ -41,9 +41,6 @@ public class AllTests {
 		de.vandermeer.skb.commons.PredicatesTests.class,
 		de.vandermeer.skb.commons.TransformersTests.class,
 
-		//COMMONS -> ASCIITABLE
-		de.vandermeer.skb.commons.asciitable.TransformersTests.class,
-
 		//COMMONS -> COLLECTIONS
 		de.vandermeer.skb.commons.collections.ClassicTableTests.class,
 		de.vandermeer.skb.commons.collections.ClassicTreeTests.class,

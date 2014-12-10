@@ -47,11 +47,6 @@
 	<dependencies>
 		<dependency>
 			<groupId>de.vandermeer</groupId>
-			<artifactId>skb.asciitable</artifactId>
-			<version>0.0.3-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>de.vandermeer</groupId>
 			<artifactId>skb.composite</artifactId>
 			<version>0.0.3-SNAPSHOT</version>
 		</dependency>
