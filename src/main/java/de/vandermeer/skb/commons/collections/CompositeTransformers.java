@@ -24,7 +24,7 @@ import de.vandermeer.skb.composite.specialobject.NONull;
  * Transformations for composite classes.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.3-SNAPSHOT build 141210 (10-Dec-14) for Java 1.8
+ * @version    v0.0.3 build 150618 (18-Jun-15) for Java 1.8
  */
 public abstract class CompositeTransformers {
 
