@@ -33,7 +33,7 @@ import de.vandermeer.skb.commons.collections.Tree;
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
  * @version    v0.0.4-SNAPSHOT build 150618 (18-Jun-15) for Java 1.8
  */
-public class TreeTests {
+public class Test_Tree {
 
 	@Test public void testRemoveNode(){
 		String separator="/";

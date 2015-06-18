@@ -21,7 +21,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import de.vandermeer.skb.commons.collections.FlatMultiTree;
+import de.vandermeer.skb.commons.collections.FlatTree;
 import de.vandermeer.skb.commons.collections.Tree;
 import de.vandermeer.skb.composite.CompositeObject;
 import de.vandermeer.skb.composite.SimpleObject;
@@ -29,16 +29,16 @@ import de.vandermeer.skb.composite.SkbObject;
 import de.vandermeer.skb.composite.SpecialObject;
 
 /**
- * Tests for multi tree.
+ * Tests for classic tree.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
  * @version    v0.0.4-SNAPSHOT build 150618 (18-Jun-15) for Java 1.8
  */
-public class MultiTreeTests {
+public class Test_ClassicTree {
 
 	@Test public void testTypes(){
 		SkbObject t;
-		t=new FlatMultiTree<Object>();
+		t=new FlatTree<Object>();
 		assertTrue(t instanceof Tree);
 		assertTrue(t instanceof CompositeObject);
 		assertFalse(t instanceof SimpleObject);
@@ -46,12 +46,12 @@ public class MultiTreeTests {
 	}
 
 	@Test public void testSettings(){
-		FlatMultiTree<Object> table=new FlatMultiTree<>();
+		FlatTree<Object> table=new FlatTree<>();
 		assertTrue(table.autoRoot);
 	}
 
 	@Test public void testConstructor(){
-		FlatMultiTree<String> tree=new FlatMultiTree<String>();
+		FlatTree<String> tree=new FlatTree<String>();
 
 		assertEquals(0, tree.sval.size());			// tree is empty
 		assertEquals(null, tree.getValue("/"));		// nothing in the tree

@@ -27,7 +27,7 @@ import org.junit.Test;
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
  * @version    v0.0.4-SNAPSHOT build 150618 (18-Jun-15) for Java 1.8
  */
-public class KVStackTests {
+public class Test_KVStack {
 
 	@Test public void testConstructor(){
 		KVStack st=new KVStack();

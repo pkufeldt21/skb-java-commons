@@ -34,7 +34,7 @@ import org.junit.runners.JUnit4;
  * @version    v0.0.4-SNAPSHOT build 150618 (18-Jun-15) for Java 1.8
  */
 @RunWith(JUnit4.class)
-public class PredicatesTests {
+public class Test_Predicates {
 
 	@Test
 	public void testContainsStringsStartingWith(){

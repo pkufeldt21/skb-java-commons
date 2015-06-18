@@ -34,7 +34,7 @@ import de.vandermeer.skb.configuration.EPropertyKeys;
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
  * @version    v0.0.4-SNAPSHOT build 150618 (18-Jun-15) for Java 1.8
  */
-public class TransformersTests {
+public class Test_Transformers {
 
 	@Test public void test_Object2Text(){
 		Skb_Transformer<Object, String> tf=Transformers.OBJECT_TO_TEXT();

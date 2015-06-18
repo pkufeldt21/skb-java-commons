@@ -32,7 +32,7 @@ import de.vandermeer.skb.composite.SpecialObject;
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
  * @version    v0.0.4-SNAPSHOT build 150618 (18-Jun-15) for Java 1.8
  */
-public class SkbContextFactoryTests {
+public class Test_SkbContextFactory {
 
 	@Test public void testGetDefaultProperties(){
 		Object props=SkbContextFactory.get.defaultProperties();

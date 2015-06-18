@@ -42,7 +42,7 @@ import de.vandermeer.skb.configuration.EPath;
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
  * @version    v0.0.4-SNAPSHOT build 150618 (18-Jun-15) for Java 1.8
  */
-public class CLIApacheTests {
+public class Test_CLIApache {
 
 	@Test public void testDeclareOptionsReal(){
 //		Object props=SkbContextFactory.get.defaultProperties();
