@@ -1,5 +1,6 @@
-v0.0.3 - feature add - 2014-##-##
+v0.0.3 -  maintenance - 2015-06-18
 ---------------------------------
+* minor maintenance
 
 
 v0.0.2 - feature add - 2014-06-25
