@@ -28,7 +28,7 @@ import de.vandermeer.skb.commons.Predicates;
  * A dictionary that translates values between two 'languages' based on pairs.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.4-SNAPSHOT build 150618 (18-Jun-15) for Java 1.8
+ * @version    v0.0.4 build 150619 (19-Jun-15) for Java 1.8
  */
 public class Dictionary<SOURCE, TARGET> implements IsDictionary<SOURCE, TARGET> {
 	protected final List<Skb_Pair<SOURCE, TARGET>> translations;
