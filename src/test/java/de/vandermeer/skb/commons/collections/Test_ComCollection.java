@@ -23,29 +23,29 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import de.vandermeer.skb.collections.ListStrategy;
-import de.vandermeer.skb.collections.SetStrategy;
+import de.vandermeer.skb.base.composite.Com_Coin;
+import de.vandermeer.skb.base.composite.Com_Leaf;
+import de.vandermeer.skb.base.composite.Com_Node;
+import de.vandermeer.skb.base.composite.Com_Top;
+import de.vandermeer.skb.base.utils.collections.ListStrategy;
+import de.vandermeer.skb.base.utils.collections.SetStrategy;
 import de.vandermeer.skb.commons.collections.ComCollection;
-import de.vandermeer.skb.composite.CompositeObject;
-import de.vandermeer.skb.composite.SimpleObject;
-import de.vandermeer.skb.composite.SkbObject;
-import de.vandermeer.skb.composite.SpecialObject;
 
 /**
  * Tests for the ComCollection.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.4 build 150619 (19-Jun-15) for Java 1.8
+ * @version    v0.0.4 build 150701 (01-Jul-15) for Java 1.8
  */
 public class Test_ComCollection {
 
 	@Test public void testTypes(){
-		SkbObject t;
+		Com_Top t;
 		t=new ComCollection<Object>();
 		assertTrue(t instanceof ComCollection);
-		assertTrue(t instanceof CompositeObject);
-		assertFalse(t instanceof SimpleObject);
-		assertFalse(t instanceof SpecialObject);
+		assertTrue(t instanceof Com_Node);
+		assertFalse(t instanceof Com_Leaf);
+		assertFalse(t instanceof Com_Coin);
 	}
 
 	@Test public void testConstructorDefault(){

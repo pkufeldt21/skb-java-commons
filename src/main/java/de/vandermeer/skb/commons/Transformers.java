@@ -16,15 +16,15 @@ package de.vandermeer.skb.commons;
 
 import de.vandermeer.skb.base.Skb_Renderable;
 import de.vandermeer.skb.base.Skb_Transformer;
+import de.vandermeer.skb.base.categories.CategoryWithValue;
 import de.vandermeer.skb.base.utils.Skb_Antlr4Utils;
 import de.vandermeer.skb.base.utils.Skb_TextUtils;
-import de.vandermeer.skb.categories.CategoryWithValue;
 
 /**
  * Collection of useful transformers.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.4 build 150619 (19-Jun-15) for Java 1.8
+ * @version    v0.0.4 build 150701 (01-Jul-15) for Java 1.8
  */
 public abstract class Transformers {
 

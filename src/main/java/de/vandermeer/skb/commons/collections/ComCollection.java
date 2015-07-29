@@ -21,19 +21,19 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import de.vandermeer.skb.collections.CollectionTools;
-import de.vandermeer.skb.collections.IsCollectionStrategy;
-import de.vandermeer.skb.collections.IsSortedSetStrategy;
-import de.vandermeer.skb.collections.ListStrategy;
-import de.vandermeer.skb.composite.CompositeObject;
+import de.vandermeer.skb.base.composite.Com_Node;
+import de.vandermeer.skb.base.utils.collections.Skb_CollectionTransformer;
+import de.vandermeer.skb.base.utils.collections.IsCollectionStrategy;
+import de.vandermeer.skb.base.utils.collections.IsSortedSetStrategy;
+import de.vandermeer.skb.base.utils.collections.ListStrategy;
 
 /**
  * An SKB specific Collection of Objects.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.4 build 150619 (19-Jun-15) for Java 1.8
+ * @version    v0.0.4 build 150701 (01-Jul-15) for Java 1.8
  */
-public class ComCollection<E> implements CompositeObject, Collection<E> {
+public class ComCollection<E> implements Com_Node, Collection<E> {
 
 	/** Local collection */
 	protected Collection<E> sval;
@@ -211,6 +211,6 @@ public class ComCollection<E> implements CompositeObject, Collection<E> {
 
 	@Override
 	public String toString() {
-		return CollectionTools.COLLECTION_TO_TEXT(this.sval);
+		return Skb_CollectionTransformer.COLLECTION_TO_TEXT(this.sval);
 	}
 }

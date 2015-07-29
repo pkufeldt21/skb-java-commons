@@ -23,18 +23,18 @@ import java.util.Set;
 
 import org.antlr.v4.runtime.misc.Pair;
 
-import de.vandermeer.skb.base.utils.Skb_TextUtils;
-import de.vandermeer.skb.categories.IsPath;
-import de.vandermeer.skb.categories.kvt.IsAttributeKey;
-import de.vandermeer.skb.collections.IsSetStrategy;
-import de.vandermeer.skb.collections.SetStrategy;
+import de.vandermeer.skb.base.categories.IsPath;
+import de.vandermeer.skb.base.categories.kvt.IsAttributeKey;
+import de.vandermeer.skb.base.utils.collections.IsSetStrategy;
+import de.vandermeer.skb.base.utils.collections.SetStrategy;
+import de.vandermeer.skb.base.utils.collections.Skb_CollectionTransformer;
 import de.vandermeer.skb.configuration.EAttributeKeys;
 
 /**
  * A multi-value implementation of the {@link Table}.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.4 build 150619 (19-Jun-15) for Java 1.8
+ * @version    v0.0.4 build 150701 (01-Jul-15) for Java 1.8
  */
 public class FlatMultiTable<E> implements Table<E> {
 	/** Map maintaining all tree elements */
@@ -177,8 +177,8 @@ public class FlatMultiTable<E> implements Table<E> {
 	}
 
 	/**
-	 * Initialises the table.
-	 * @param strategy stragy for the internal list
+	 * Initializes the table.
+	 * @param strategy stray for the internal list
 	 * @param columns collection of columns
 	 */
 	private void init(IsSetStrategy strategy, Collection<IsAttributeKey> columns){
@@ -231,6 +231,6 @@ public class FlatMultiTable<E> implements Table<E> {
 
 	@Override
 	public String toString(){
-		return Skb_TextUtils.MAP_TO_TEXT().transform(this.sval);
+		return Skb_CollectionTransformer.MAP_TO_TEXT(this.sval);
 	}
 }

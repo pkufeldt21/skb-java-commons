@@ -28,19 +28,19 @@ import java.util.Collection;
 import org.apache.commons.cli.Options;
 import org.junit.Test;
 
-import de.vandermeer.skb.base.utils.Skb_UrlUtils;
-import de.vandermeer.skb.collections.SetStrategy;
+import de.vandermeer.skb.base.composite.coin.NOSuccess;
+import de.vandermeer.skb.base.info.FileSource;
+import de.vandermeer.skb.base.utils.collections.SetStrategy;
 import de.vandermeer.skb.commons.collections.PropertyTable;
 import de.vandermeer.skb.commons.collections.Table;
 import de.vandermeer.skb.commons.collections.Tree;
-import de.vandermeer.skb.composite.specialobject.NOSuccess;
 import de.vandermeer.skb.configuration.EPath;
 
 /**
  * Tests for the the Apache CLI implementation.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.4 build 150619 (19-Jun-15) for Java 1.8
+ * @version    v0.0.4 build 150701 (01-Jul-15) for Java 1.8
  */
 public class Test_CLIApache {
 
@@ -111,7 +111,7 @@ public class Test_CLIApache {
 	}
 
 	private PropertyTable prepareComProperties(){
-		URL url=Skb_UrlUtils.getUrl("de/vandermeer/skb/commons/utils/cli-options.json");
+		URL url = new FileSource("de/vandermeer/skb/commons/utils/cli-options.json").asURL();
 		assertNotNull(url);
 
 		Object cc=new Json2Collections().read(url);

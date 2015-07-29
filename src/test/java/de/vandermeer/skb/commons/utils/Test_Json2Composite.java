@@ -32,32 +32,32 @@ import org.apache.commons.lang3.text.StrBuilder;
 import org.junit.Test;
 
 import de.vandermeer.skb.base.Skb_Transformer;
-import de.vandermeer.skb.base.message.Message5WH;
-import de.vandermeer.skb.base.utils.Skb_UrlUtils;
-import de.vandermeer.skb.categories.IsPath;
+import de.vandermeer.skb.base.categories.IsPath;
+import de.vandermeer.skb.base.composite.Com_Coin;
+import de.vandermeer.skb.base.composite.Com_Leaf;
+import de.vandermeer.skb.base.composite.Com_Node;
+import de.vandermeer.skb.base.composite.Com_Top;
+import de.vandermeer.skb.base.composite.coin.CC_Error;
+import de.vandermeer.skb.base.info.FileSource;
+import de.vandermeer.skb.base.message.Message5WH_Builder;
 import de.vandermeer.skb.commons.collections.ComCollection;
 import de.vandermeer.skb.commons.collections.FlatMultiTree;
 import de.vandermeer.skb.commons.collections.Tree;
-import de.vandermeer.skb.composite.CompositeObject;
-import de.vandermeer.skb.composite.SimpleObject;
-import de.vandermeer.skb.composite.SkbObject;
-import de.vandermeer.skb.composite.SpecialObject;
-import de.vandermeer.skb.composite.specialobject.SOError;
 
 /**
  * Tests for the JSON to Com conversions.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.4 build 150619 (19-Jun-15) for Java 1.8
+ * @version    v0.0.4 build 150701 (01-Jul-15) for Java 1.8
  */
 public class Test_Json2Composite {
 
 	@Test public void testTypes(){
 		Json2Collections j2c=new Json2Collections();
-		assertFalse(j2c instanceof SkbObject);
-		assertFalse(j2c instanceof CompositeObject);
-		assertFalse(j2c instanceof SimpleObject);
-		assertFalse(j2c instanceof SpecialObject);
+		assertFalse(j2c instanceof Com_Top);
+		assertFalse(j2c instanceof Com_Node);
+		assertFalse(j2c instanceof Com_Leaf);
+		assertFalse(j2c instanceof Com_Coin);
 	}
 
 	@Test public void testConstructor(){
@@ -196,16 +196,16 @@ public class Test_Json2Composite {
 	@Test public void testFile(){
 //		String filename="de/vandermeer/skb/commons/utils/cli-options.json";
 		String filename="de/vandermeer/skb/commons/utils/conversion-map.json";
-		URL url=Skb_UrlUtils.getUrl(filename);
-		assertNotNull(new SOError().add(new Message5WH().addWhat("error loading file from resource and file system").addHow(filename)).render(), url);
+		URL url = new FileSource(filename).asURL();
+		assertNotNull(new CC_Error().add(new Message5WH_Builder().addWhat("error loading file from resource and file system").addHow(filename).build()).render(), url);
 
 		//read a JSON string from the file, warning if problems with parsing (null) or if return is not a tree (not valid info)
 		Object cc=new Json2Collections().read(url);
-		assertNotNull(new SOError().add(new Message5WH().addWhat("problem parsing JSON file").addHow(filename)).render(), cc);
+		assertNotNull(new CC_Error().add(new Message5WH_Builder().addWhat("problem parsing JSON file").addHow(filename).build()).render(), cc);
 
 		assertTrue(cc instanceof Tree);
 		if(!(cc instanceof Tree)){
-			System.err.println(new SOError().add(new Message5WH().addWhat("wrong type").addHow("expected tree, found ", cc.getClass().getSimpleName())));
+			System.err.println(new CC_Error().add(new Message5WH_Builder().addWhat("wrong type").addHow("expected tree, found ", cc.getClass().getSimpleName()).build()));
 			return;
 		}
 

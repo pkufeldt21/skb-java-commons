@@ -25,6 +25,7 @@ import org.stringtemplate.v4.ST;
 
 import de.vandermeer.skb.base.Skb_Transformer;
 import de.vandermeer.skb.base.message.Message5WH;
+import de.vandermeer.skb.base.message.Message5WH_Builder;
 import de.vandermeer.skb.configuration.EPath;
 import de.vandermeer.skb.configuration.EPropertyKeys;
 
@@ -32,12 +33,12 @@ import de.vandermeer.skb.configuration.EPropertyKeys;
  * Tests for Transformers, some of which are repeated in TransformationTests.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.4 build 150619 (19-Jun-15) for Java 1.8
+ * @version    v0.0.4 build 150701 (01-Jul-15) for Java 1.8
  */
 public class Test_Transformers {
 
 	@Test public void test_Object2Text(){
-		Skb_Transformer<Object, String> tf=Transformers.OBJECT_TO_TEXT();
+		Skb_Transformer<Object, String> tf = Transformers.OBJECT_TO_TEXT();
 
 		assertEquals("", tf.transform(null));
 		assertEquals("", tf.transform(""));
@@ -45,20 +46,20 @@ public class Test_Transformers {
 		assertEquals("a string", tf.transform("a string"));
 		assertEquals("another string", tf.transform("another string"));
 
-		CommonToken tk1=new CommonToken(0);
+		CommonToken tk1 = new CommonToken(0);
 		assertEquals("", tf.transform(tk1));
 		tk1.setText("me Token");
 		assertEquals("me Token", tf.transform(tk1));
 
-		ParserRuleContext prc=new ParserRuleContext();
+		ParserRuleContext prc = new ParserRuleContext();
 		assertEquals("", tf.transform(prc));
 		prc.addChild(tk1);
 		assertEquals("me Token", tf.transform(prc));
 
-		ParseTree pt=prc.getChild(0);
+		ParseTree pt = prc.getChild(0);
 		assertEquals("me Token", tf.transform(pt));
 
-		CommonToken tk2=new CommonToken(0);
+		CommonToken tk2 = new CommonToken(0);
 		tk2.setText(" : and another Token");
 		prc.addChild(tk2);
 		assertEquals("me Token : and another Token", tf.transform(prc));
@@ -74,10 +75,9 @@ public class Test_Transformers {
 		st.add("b", "Alice");
 		assertEquals("Bob and Alice", tf.transform(st));
 
-		Message5WH msg=new Message5WH();
+		Message5WH msg = new Message5WH_Builder().build();
 		assertEquals("", tf.transform(msg));
-		msg.setReporter("my Class");
-		msg.addWhat("why oh why");
+		msg = new Message5WH_Builder().setReporter("my Class").addWhat("why oh why").build();
 		assertEquals("my Class: >> why oh why", tf.transform(msg));
 
 		assertEquals(EPath.CONFIGURATION.path(), tf.transform(EPath.CONFIGURATION));

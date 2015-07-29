@@ -15,16 +15,16 @@
 
 package de.vandermeer.skb.commons.utils;
 
+import de.vandermeer.skb.base.composite.Com_Coin;
+import de.vandermeer.skb.base.composite.coin.CC_Warning;
+import de.vandermeer.skb.base.composite.coin.NOSuccess;
 import de.vandermeer.skb.commons.collections.PropertyTable;
-import de.vandermeer.skb.composite.SpecialObject;
-import de.vandermeer.skb.composite.specialobject.NOSuccess;
-import de.vandermeer.skb.composite.specialobject.SOWarning;
 
 /**
  * A Command Line Interface (command line parser).
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.4 build 150619 (19-Jun-15) for Java 1.8
+ * @version    v0.0.4 build 150701 (01-Jul-15) for Java 1.8
  */
 public interface CLI {
 	/**
@@ -40,17 +40,17 @@ public interface CLI {
 	 * Sets options in the property map with the values parsed from the command line.
 	 * This method can be called after parsing the command line.
 	 * @param prop map for options
-	 * @return {@link NOSuccess} on success, {@link SOWarning} with more information if any problem occurred
+	 * @return {@link NOSuccess} on success, {@link CC_Warning} with more information if any problem occurred
 	 */
-	SpecialObject getOptions(PropertyTable prop);
+	Com_Coin getOptions(PropertyTable prop);
 
 	/**
 	 * Declares command line options with their arguments.
 	 * This method should be called before parsing the command line.
 	 * @param prop property map with command line options
-	 * @return {@link NOSuccess} on success, {@link SOWarning} with more information if any problem occurred
+	 * @return {@link NOSuccess} on success, {@link CC_Warning} with more information if any problem occurred
 	 */
-	SpecialObject declareOptions(PropertyTable prop);
+	Com_Coin declareOptions(PropertyTable prop);
 
 	CLI getCopy();
 

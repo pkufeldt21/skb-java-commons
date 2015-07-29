@@ -22,21 +22,22 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import de.vandermeer.skb.base.composite.Com_Coin;
+import de.vandermeer.skb.base.tools.ReportManager;
 import de.vandermeer.skb.commons.collections.PropertyTable;
 import de.vandermeer.skb.commons.collections.Tree;
-import de.vandermeer.skb.composite.SpecialObject;
 
 /**
  * Tests for the context factory.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.4 build 150619 (19-Jun-15) for Java 1.8
+ * @version    v0.0.4 build 150701 (01-Jul-15) for Java 1.8
  */
 public class Test_SkbContextFactory {
 
 	@Test public void testGetDefaultProperties(){
 		Object props=SkbContextFactory.get.defaultProperties();
-		assertFalse(props instanceof SpecialObject);		//if true, SO holds problem
+		assertFalse(props instanceof Com_Coin);		//if true, SO holds problem
 		assertTrue(props instanceof Tree);					//if ComTree we are ok
 	}
 

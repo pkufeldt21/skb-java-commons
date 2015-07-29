@@ -21,15 +21,15 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import de.vandermeer.skb.base.Skb_Pair;
-import de.vandermeer.skb.categories.IsDictionary;
-import de.vandermeer.skb.collections.CollectionFilters;
+import de.vandermeer.skb.base.categories.IsDictionary;
+import de.vandermeer.skb.base.utils.collections.Skb_CollectionFilter;
 import de.vandermeer.skb.commons.Predicates;
 
 /**
  * A dictionary that uses enumerates as translation pairs.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.4 build 150619 (19-Jun-15) for Java 1.8
+ * @version    v0.0.4 build 150701 (01-Jul-15) for Java 1.8
  */
 public class DictionaryEnum<SOURCE, TARGET, E extends Enum<E> & Skb_Pair<SOURCE, TARGET>> implements IsDictionary<SOURCE, TARGET> {
 
@@ -136,7 +136,7 @@ public class DictionaryEnum<SOURCE, TARGET, E extends Enum<E> & Skb_Pair<SOURCE,
 	 */
 	protected final Collection<E> _getTargets(SOURCE source){
 		Predicate<E> predicate = Predicates.IS_TRANSLATION_FOR((TARGET)null, source);
-		return new CollectionFilters<E>(){}.filter(predicate, this.translations);
+		return Skb_CollectionFilter.FILTER(predicate, this.translations);
 	}
 
 	/**
@@ -146,6 +146,6 @@ public class DictionaryEnum<SOURCE, TARGET, E extends Enum<E> & Skb_Pair<SOURCE,
 	 */
 	protected final Collection<E> _getSources(TARGET target){
 		Predicate<E> predicate = Predicates.IS_TRANSLATION_FOR(target, (SOURCE)null);
-		return new CollectionFilters<E>(){}.filter(predicate, this.translations);
+		return Skb_CollectionFilter.FILTER(predicate, this.translations);
 	}
 }

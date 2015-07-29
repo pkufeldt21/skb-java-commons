@@ -23,22 +23,22 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import de.vandermeer.skb.base.Skb_Transformer;
+import de.vandermeer.skb.base.composite.Com_Node;
+import de.vandermeer.skb.base.composite.coin.NONone;
+import de.vandermeer.skb.base.composite.coin.NONull;
 import de.vandermeer.skb.commons.collections.ComCollection;
 import de.vandermeer.skb.commons.collections.CompositeTransformers;
 import de.vandermeer.skb.commons.collections.FlatTree;
 import de.vandermeer.skb.commons.collections.Tree;
-import de.vandermeer.skb.composite.CompositeObject;
-import de.vandermeer.skb.composite.specialobject.NONone;
-import de.vandermeer.skb.composite.specialobject.NONull;
 
 /**
  * Tests for Composite Transformers.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.4 build 150619 (19-Jun-15) for Java 1.8
+ * @version    v0.0.4 build 150701 (01-Jul-15) for Java 1.8
  */
 public class Test_CompositeTransformers {
-	Skb_Transformer<Object, CompositeObject> tr=CompositeTransformers.EXPLODE_OBJECT();
+	Skb_Transformer<Object, Com_Node> tr=CompositeTransformers.EXPLODE_OBJECT();
 
 	@Test public void testExplodeDefaults(){
 		assertEquals(NONull.get, this.tr.transform(null));

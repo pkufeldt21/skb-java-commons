@@ -23,16 +23,16 @@ import java.util.Set;
 import org.antlr.v4.runtime.misc.Pair;
 import org.apache.commons.lang3.text.StrBuilder;
 
-import de.vandermeer.skb.base.utils.Skb_TextUtils;
-import de.vandermeer.skb.categories.IsPath;
+import de.vandermeer.skb.base.categories.IsPath;
+import de.vandermeer.skb.base.composite.coin.NullObject;
+import de.vandermeer.skb.base.utils.collections.Skb_CollectionTransformer;
 import de.vandermeer.skb.commons.Predicates;
-import de.vandermeer.skb.composite.specialobject.NullObject;
 
 /**
  * A multi-value implementation of the {@link Tree}.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.4 build 150619 (19-Jun-15) for Java 1.8
+ * @version    v0.0.4 build 150701 (01-Jul-15) for Java 1.8
  */
 public class FlatMultiTree<E> implements Tree<E> {
 	/** Map maintaining all tree elements */
@@ -237,7 +237,7 @@ public class FlatMultiTree<E> implements Tree<E> {
 
 	@Override
 	public String toString(){
-		return Skb_TextUtils.MAP_TO_TEXT().transform(this.sval);
+		return Skb_CollectionTransformer.MAP_TO_TEXT(this.sval);
 	}
 
 	@SuppressWarnings("unchecked")

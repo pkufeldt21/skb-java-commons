@@ -28,14 +28,14 @@ import org.apache.commons.cli.ParseException;
 import org.apache.commons.cli.PosixParser;
 import org.apache.commons.lang3.StringUtils;
 
-import de.vandermeer.skb.base.message.Message5WH;
+import de.vandermeer.skb.base.composite.Com_Coin;
+import de.vandermeer.skb.base.composite.coin.CC_Warning;
+import de.vandermeer.skb.base.composite.coin.NONone;
+import de.vandermeer.skb.base.composite.coin.NONull;
+import de.vandermeer.skb.base.composite.coin.NOSuccess;
+import de.vandermeer.skb.base.message.Message5WH_Builder;
 import de.vandermeer.skb.base.utils.Skb_ObjectUtils;
 import de.vandermeer.skb.commons.collections.PropertyTable;
-import de.vandermeer.skb.composite.SpecialObject;
-import de.vandermeer.skb.composite.specialobject.NONone;
-import de.vandermeer.skb.composite.specialobject.NONull;
-import de.vandermeer.skb.composite.specialobject.NOSuccess;
-import de.vandermeer.skb.composite.specialobject.SOWarning;
 import de.vandermeer.skb.configuration.EAttributeKeys;
 import de.vandermeer.skb.configuration.ETypeMap;
 
@@ -43,7 +43,7 @@ import de.vandermeer.skb.configuration.ETypeMap;
  * Implementation of the {@link CLI} interface using Apache Commons CLI.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.4 build 150619 (19-Jun-15) for Java 1.8
+ * @version    v0.0.4 build 150701 (01-Jul-15) for Java 1.8
  */
 public class CLIApache implements CLI {
 
@@ -78,8 +78,8 @@ public class CLIApache implements CLI {
 	}
 
 	@Override
-	public SpecialObject getOptions(PropertyTable prop) {
-		SOWarning ret = null;
+	public Com_Coin getOptions(PropertyTable prop) {
+		CC_Warning ret = null;
 		String val;
 		for(String key : this.optionList.keySet()){
 			val = this.optionList.get(key);
@@ -106,9 +106,9 @@ public class CLIApache implements CLI {
 						break;
 					default:
 						if(ret==null){
-							ret = new SOWarning();
+							ret = new CC_Warning();
 						}
-						ret.add(new Message5WH().addWhat("unknown type <").addWhat(prop.get(key, EAttributeKeys.CLI_PARAMETER_TYPE)).addWhat("> for <").addWhat(key).addWhat(">"));
+						ret.add(new Message5WH_Builder().addWhat("unknown type <").addWhat(prop.get(key, EAttributeKeys.CLI_PARAMETER_TYPE)).addWhat("> for <").addWhat(key).addWhat(">").build());
 				}
 
 			}
@@ -120,15 +120,15 @@ public class CLIApache implements CLI {
 	}
 
 	@Override
-	public SpecialObject declareOptions(PropertyTable prop) {
+	public Com_Coin declareOptions(PropertyTable prop) {
 		String optShort;
 		String optLong;
-		SOWarning ret = null;
+		CC_Warning ret = null;
 
 		for (String current : prop.keys()){
 			if(prop.hasPropertyValue(current, EAttributeKeys.CLI_PARAMETER_TYPE)){
 				Object o = Skb_ObjectUtils.CONVERT(prop.get(current, EAttributeKeys.CLI_PARAMETER_LONG), Object.class, NONull.get, NONone.get);
-				if(!(o instanceof SpecialObject)){
+				if(!(o instanceof Com_Coin)){
 					optLong = o.toString();
 				}
 				else{
@@ -140,7 +140,7 @@ public class CLIApache implements CLI {
 				OptionBuilder.withDescription(o.toString());
 
 				o = Skb_ObjectUtils.CONVERT(prop.get(current, EAttributeKeys.CLI_PARAMETER_DESCRIPTION_ARGUMENTS), Object.class, NONull.get, NONone.get);
-				if(!(o instanceof SpecialObject) && o.toString().length()>0){
+				if(!(o instanceof Com_Coin) && o.toString().length()>0){
 					OptionBuilder.hasArg();
 					OptionBuilder.withArgName(o.toString());
 				}
@@ -169,7 +169,7 @@ public class CLIApache implements CLI {
 
 
 				o = prop.get(current, EAttributeKeys.CLI_PARAMETER_SHORT);
-				if(o!=null && !(o instanceof SpecialObject)){
+				if(o!=null && !(o instanceof Com_Coin)){
 					optShort = o.toString();
 				}
 				else{
@@ -190,9 +190,9 @@ public class CLIApache implements CLI {
 					OptionBuilder.create();
 
 					if(ret==null){
-						ret = new SOWarning();
+						ret = new CC_Warning();
 					}
-					ret.add(new Message5WH().addWhat("no short and no long options for <").addWhat(current).addWhat(">"));
+					ret.add(new Message5WH_Builder().addWhat("no short and no long options for <").addWhat(current).addWhat(">").build());
 				}
 			}
 		}

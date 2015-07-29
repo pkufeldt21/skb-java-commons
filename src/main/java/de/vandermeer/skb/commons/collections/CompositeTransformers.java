@@ -16,15 +16,15 @@
 package de.vandermeer.skb.commons.collections;
 
 import de.vandermeer.skb.base.Skb_Transformer;
-import de.vandermeer.skb.composite.CompositeObject;
-import de.vandermeer.skb.composite.specialobject.NONone;
-import de.vandermeer.skb.composite.specialobject.NONull;
+import de.vandermeer.skb.base.composite.Com_Node;
+import de.vandermeer.skb.base.composite.coin.NONone;
+import de.vandermeer.skb.base.composite.coin.NONull;
 
 /**
  * Transformations for composite classes.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.4 build 150619 (19-Jun-15) for Java 1.8
+ * @version    v0.0.4 build 150701 (01-Jul-15) for Java 1.8
  */
 public abstract class CompositeTransformers {
 
@@ -34,16 +34,16 @@ public abstract class CompositeTransformers {
 	 * The String explodes to a tree if it has the following notation: <code>key1%val1,key2%val2%key3,val3,...</code>
 	 * The String explodes to a collection if it has the following notation: <code>string1,string2,string3,...</code>
 	 * All strings that are added to a collection or put in a tree are trimmed.
-	 * @return	Transformer that explodes an object. The transformer returns {@link CompositeObject}
+	 * @return	Transformer that explodes an object. The transformer returns {@link Com_Node}
 	 * 			which is either a tree (if input explodes to an associated array, must contain "%") or
 	 * 			an collection (if input explodes to a simple String[], must contain "',"); or
 	 * 			{@link NONull} if the input was null; or
 	 * 			null if the length of toString on the value was 0;
 	 * 			 {@link NONone} otherwise
 	 */
-	public static final Skb_Transformer<Object, CompositeObject> EXPLODE_OBJECT(){
-		return new Skb_Transformer<Object, CompositeObject>(){
-			@Override public CompositeObject transform(Object src){
+	public static final Skb_Transformer<Object, Com_Node> EXPLODE_OBJECT(){
+		return new Skb_Transformer<Object, Com_Node>(){
+			@Override public Com_Node transform(Object src){
 				if(src==null){
 					return NONull.get;
 				}

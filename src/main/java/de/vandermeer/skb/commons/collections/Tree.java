@@ -24,16 +24,16 @@ import org.antlr.v4.runtime.misc.Pair;
 import org.apache.commons.lang3.text.StrBuilder;
 
 import de.vandermeer.skb.base.Skb_Transformer;
-import de.vandermeer.skb.categories.IsPath;
-import de.vandermeer.skb.composite.CompositeObject;
+import de.vandermeer.skb.base.categories.IsPath;
+import de.vandermeer.skb.base.composite.Com_Node;
 
 /**
  * A Tree.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.4 build 150619 (19-Jun-15) for Java 1.8
+ * @version    v0.0.4 build 150701 (01-Jul-15) for Java 1.8
  */
-public interface Tree<E> extends CompositeObject {
+public interface Tree<E> extends Com_Node {
 
 	/** The default separator for tree paths set to "/" */
 	public static String defaulSeparator="/";

@@ -15,26 +15,26 @@
 
 package de.vandermeer.skb.commons.collections;
 
+import de.vandermeer.skb.base.categories.IsPath;
+import de.vandermeer.skb.base.composite.Com_Coin;
+import de.vandermeer.skb.base.composite.coin.NONull;
+import de.vandermeer.skb.base.composite.coin.NOSuccess;
+import de.vandermeer.skb.base.composite.coin.NullObject;
 import de.vandermeer.skb.base.utils.Skb_ObjectUtils;
-import de.vandermeer.skb.base.utils.Skb_TextUtils;
-import de.vandermeer.skb.categories.IsPath;
-import de.vandermeer.skb.collections.IsSetStrategy;
-import de.vandermeer.skb.composite.SpecialObject;
-import de.vandermeer.skb.composite.specialobject.NONull;
-import de.vandermeer.skb.composite.specialobject.NOSuccess;
-import de.vandermeer.skb.composite.specialobject.NullObject;
+import de.vandermeer.skb.base.utils.collections.IsSetStrategy;
+import de.vandermeer.skb.base.utils.collections.Skb_CollectionTransformer;
 import de.vandermeer.skb.configuration.EAttributeKeys;
 
 /**
  * Property table, pre-configured with relevant columns.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.4 build 150619 (19-Jun-15) for Java 1.8
+ * @version    v0.0.4 build 150701 (01-Jul-15) for Java 1.8
  */
 public class PropertyTable extends FlatTable<Object> {
 
 	/**
-	 * Constructor, initialises the property table with a strategy for handling its array.
+	 * Constructor, initializes the property table with a strategy for handling its array.
 	 * @param strategy property table array strategy
 	 */
 	public PropertyTable(IsSetStrategy strategy){
@@ -44,33 +44,33 @@ public class PropertyTable extends FlatTable<Object> {
 	/**
 	 * Returns the value of the specified property.
 	 * The value is determined by testing the CLI value (value set by command line), then the file value (value read from file/json)
-	 * and last the default value. The first one that is not set to {@link SpecialObject} will be returned. If none is set, a {@link NONull}
+	 * and last the default value. The first one that is not set to {@link Com_Coin} will be returned. If none is set, a {@link NONull}
 	 * will be returned.
 	 * @param property property name
 	 * @return The value is determined by testing the CLI value (value set by command line), then the file value (value read from file/json)
-	 * and last the default value. The first one that is not set to {@link SpecialObject} will be returned. If none is set, a {@link NONull}
+	 * and last the default value. The first one that is not set to {@link Com_Coin} will be returned. If none is set, a {@link NONull}
 	 * will be returned.
 	 */
 	public Object getPropertyValue(Object property) {
 		Object ret;
 
 		ret = this.getPropertyColumn(property, EAttributeKeys.VALUE_SET);
-		if(!(ret instanceof SpecialObject)){
+		if(!(ret instanceof Com_Coin)){
 			return ret;
 		}
 
 		ret = this.getPropertyColumn(property, EAttributeKeys.VALUE_CLI);
-		if(!(ret instanceof SpecialObject)){
+		if(!(ret instanceof Com_Coin)){
 			return ret;
 		}
 
 		ret = this.getPropertyColumn(property, EAttributeKeys.VALUE_FILE);
-		if(!(ret instanceof SpecialObject)){
+		if(!(ret instanceof Com_Coin)){
 			return ret;
 		}
 
 		ret = this.getPropertyColumn(property, EAttributeKeys.VALUE_DEFAULT);
-		if(!(ret instanceof SpecialObject)){
+		if(!(ret instanceof Com_Coin)){
 			return ret;
 		}
 
@@ -131,7 +131,7 @@ public class PropertyTable extends FlatTable<Object> {
 	 */
 	public boolean hasPropertyValue(Object property, Object col) {
 		Object v = this.get(property, col);
-		if(v==null || (v instanceof SpecialObject)){
+		if(v==null || (v instanceof Com_Coin)){
 			return false;
 		}
 		return true;
@@ -177,7 +177,7 @@ public class PropertyTable extends FlatTable<Object> {
 				if(row!=null && tree.containsNode(path.path(), row)){
 					for(EAttributeKeys col : EAttributeKeys.values()){
 						Object val = tree.getValue(new Object[]{path.path(), row}, col);
-						if(val!=null && !(val instanceof SpecialObject)){
+						if(val!=null && !(val instanceof Com_Coin)){
 							this.columnValue(row, col, val);
 							i++;
 						}
@@ -190,6 +190,6 @@ public class PropertyTable extends FlatTable<Object> {
 
 	@Override
 	public String toString(){
-		return Skb_TextUtils.MAP_TO_TEXT().transform(this.sval);
+		return Skb_CollectionTransformer.MAP_TO_TEXT(this.sval);
 	}
 }

@@ -14,7 +14,7 @@
  */
 
 /**
- * Collection types (collection, tables, trees) as implementations of {@link de.vandermeer.skb.composite.CompositeObject} objects.
+ * Collection types (collection, tables, trees) as implementations of {@link de.vandermeer.skb.base.composite.Com_Node} objects.
  * 
  * This package provides a number of collection-like SKB composite types, along with some utility classes.
  * The two main types are a tree and a table. Both come with an interface and a common implementation. Both support generics.
@@ -26,6 +26,6 @@
  * </p>
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.4 build 150619 (19-Jun-15) for Java 1.8
+ * @version    v0.0.4 build 150701 (01-Jul-15) for Java 1.8
  */
 package de.vandermeer.skb.commons.collections;

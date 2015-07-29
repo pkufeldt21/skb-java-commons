@@ -22,17 +22,18 @@ import java.util.Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.vandermeer.skb.base.message.Message5WH;
-import de.vandermeer.skb.base.utils.Skb_PropertyUtils;
-import de.vandermeer.skb.base.utils.Skb_UrlUtils;
-import de.vandermeer.skb.categories.IsFactory;
-import de.vandermeer.skb.categories.IsPath;
-import de.vandermeer.skb.categories.OfGroup;
-import de.vandermeer.skb.collections.SetStrategy;
+import de.vandermeer.skb.base.categories.IsFactory;
+import de.vandermeer.skb.base.categories.IsPath;
+import de.vandermeer.skb.base.categories.OfGroup;
+import de.vandermeer.skb.base.composite.coin.CC_Error;
+import de.vandermeer.skb.base.info.FileSource;
+import de.vandermeer.skb.base.info.PropertyFileLoader;
+import de.vandermeer.skb.base.message.Message5WH_Builder;
+import de.vandermeer.skb.base.tools.ReportManager;
+import de.vandermeer.skb.base.utils.collections.SetStrategy;
 import de.vandermeer.skb.commons.collections.FlatMultiTree;
 import de.vandermeer.skb.commons.collections.PropertyTable;
 import de.vandermeer.skb.commons.collections.Tree;
-import de.vandermeer.skb.composite.specialobject.SOError;
 import de.vandermeer.skb.configuration.EAttributeKeys;
 import de.vandermeer.skb.configuration.EPath;
 import de.vandermeer.skb.configuration.EPropertyKeyGroups;
@@ -42,13 +43,13 @@ import de.vandermeer.skb.configuration.EPropertyKeys;
  * Context factory.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.4 build 150619 (19-Jun-15) for Java 1.8
+ * @version    v0.0.4 build 150701 (01-Jul-15) for Java 1.8
  */
 public enum SkbContextFactory implements IsFactory {
-	/** Enumerate 'get' realising the singleton pattern for the factory. */
+	/** Enumerate 'get' realizing the singleton pattern for the factory. */
 	get;
 
-	final Logger logger=LoggerFactory.getLogger(SkbContextFactory.class);
+	final Logger logger = LoggerFactory.getLogger(SkbContextFactory.class);
 
 	/** Default property pointing to a configuration file. */
 	public static final String CONFIG_FILE_PROPERTY = "de.vandermeer.skb.context.jsonfile";
@@ -57,14 +58,18 @@ public enum SkbContextFactory implements IsFactory {
 	public static final String CONFIG_FILE_DEFAULT = "de/vandermeer/skb/commons/context.properties";
 
 	/** Last error message. */
-	public final SOError lastError=new SOError();
+	public final CC_Error lastError = new CC_Error();
 
 	/**
 	 * Loads and returns default properties.
 	 * @return a {@link Tree} with property information or null (errors are in lastError)
 	 */
 	public Tree<?> defaultProperties(){
-		Properties properties = Skb_PropertyUtils.loadProperties(SkbContextFactory.CONFIG_FILE_DEFAULT, SkbContextFactory.class.getName());
+		PropertyFileLoader pfl = new PropertyFileLoader(SkbContextFactory.CONFIG_FILE_DEFAULT);
+		Properties properties = pfl.load();
+		//TODO send errors to logger
+		this.lastError.add(pfl.getLoadErrors());
+
 		String propFile = properties.getProperty(SkbContextFactory.CONFIG_FILE_PROPERTY);
 		return this.propertiesFromFile(propFile, EPath.CONFIGURATION);
 	}
@@ -81,15 +86,15 @@ public enum SkbContextFactory implements IsFactory {
 		//check if property contains a string, warning if empty
 		if(fileName==null){
 			logger.warn("empty filename <{}>, no configuration loaded", fileName);
-			this.lastError.add(new Message5WH().addWhat("empty property").addHow(fileName));
+			this.lastError.add(new Message5WH_Builder().addWhat("empty property").addHow(fileName).build());
 			return null;
 		}
 
-		//get a reader for the string, warning if neither File nor Resource found it
-		URL url = Skb_UrlUtils.getUrl(fileName);
+		FileSource fs = new FileSource(fileName.toString());
+		URL url = fs.asURL();
 		if(url==null){
 			logger.warn("could not read file <{}>, tried as resource and as file name", fileName);
-			this.lastError.add(new Message5WH().addWhat("error loading file from resource and file system").addHow(fileName));
+			this.lastError.add(new Message5WH_Builder().addWhat("error loading file from resource and file system").addHow(fileName).build());
 			return null;
 		}
 
@@ -97,12 +102,12 @@ public enum SkbContextFactory implements IsFactory {
 		Object cc = new Json2Collections().read(url);
 		if(cc==null){
 			logger.warn("JSON conversion returned null");
-			this.lastError.add(new Message5WH().addWhat("problem parsing JSON file").addHow(fileName));
+			this.lastError.add(new Message5WH_Builder().addWhat("problem parsing JSON file").addHow(fileName).build());
 			return null;
 		}
 		if(!(cc instanceof Tree)){
 			logger.warn("expected tree, found <{}>", cc.getClass().getSimpleName());
-			this.lastError.add(new Message5WH().addWhat("wrong type").addHow("expected tree, found ", cc.getClass().getSimpleName()));
+			this.lastError.add(new Message5WH_Builder().addWhat("wrong type").addHow("expected tree, found ", cc.getClass().getSimpleName()).build());
 			return null;
 		}
 
@@ -110,7 +115,7 @@ public enum SkbContextFactory implements IsFactory {
 		Tree<?> ret = ((Tree<?>)cc).getSubtree(path.path());
 		if(ret==null){
 			logger.warn("no configuration information in configuration file");
-			this.lastError.add(new Message5WH().addWhat("no information found").addHow("no configuration information in file <", fileName, "> for path <", path, ">"));
+			this.lastError.add(new Message5WH_Builder().addWhat("no information found").addHow("no configuration information in file <", fileName, "> for path <", path, ">").build());
 			return null;
 		}
 		return ret;
@@ -124,7 +129,7 @@ public enum SkbContextFactory implements IsFactory {
 	 */
 	public Tree<?> propertiesFromFile(Object[] files, IsPath path){
 		FlatMultiTree<Object> ret = new FlatMultiTree<Object>();
-		SOError errors = new SOError();
+		CC_Error errors = new CC_Error();
 
 		if(files!=null){
 			for(Object file : files){

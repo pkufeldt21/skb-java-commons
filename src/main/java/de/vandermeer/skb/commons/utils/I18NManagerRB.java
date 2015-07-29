@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
  * Implementation of the {@link I18NManager} interface using Resource Bundles.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.4 build 150619 (19-Jun-15) for Java 1.8
+ * @version    v0.0.4 build 150701 (01-Jul-15) for Java 1.8
  */
 public class I18NManagerRB implements I18NManager {
 	/** List of keys (domains) with associated resource bundle */

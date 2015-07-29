@@ -20,15 +20,15 @@ import java.util.Collection;
 import java.util.List;
 
 import de.vandermeer.skb.base.Skb_Pair;
-import de.vandermeer.skb.categories.IsDictionary;
-import de.vandermeer.skb.collections.CollectionFilters;
+import de.vandermeer.skb.base.categories.IsDictionary;
+import de.vandermeer.skb.base.utils.collections.Skb_CollectionFilter;
 import de.vandermeer.skb.commons.Predicates;
 
 /**
  * A dictionary that translates values between two 'languages' based on pairs.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
- * @version    v0.0.4 build 150619 (19-Jun-15) for Java 1.8
+ * @version    v0.0.4 build 150701 (01-Jul-15) for Java 1.8
  */
 public class Dictionary<SOURCE, TARGET> implements IsDictionary<SOURCE, TARGET> {
 	protected final List<Skb_Pair<SOURCE, TARGET>> translations;
@@ -130,10 +130,10 @@ public class Dictionary<SOURCE, TARGET> implements IsDictionary<SOURCE, TARGET> 
 	}
 
 	protected final Collection<Skb_Pair<SOURCE, TARGET>> _getTargets(SOURCE source){
-		return new CollectionFilters<Skb_Pair<SOURCE, TARGET>>(){}.filter(Predicates.IS_TRANSLATION_FOR((TARGET)null, source), this.translations);
+		return Skb_CollectionFilter.FILTER(Predicates.IS_TRANSLATION_FOR((TARGET)null, source), this.translations);
 	}
 
 	protected final Collection<Skb_Pair<SOURCE, TARGET>> _getSources(TARGET target){
-		return new CollectionFilters<Skb_Pair<SOURCE, TARGET>>(){}.filter(Predicates.IS_TRANSLATION_FOR(target, (SOURCE)null), this.translations);
+		return Skb_CollectionFilter.FILTER(Predicates.IS_TRANSLATION_FOR(target, (SOURCE)null), this.translations);
 	}
 }
