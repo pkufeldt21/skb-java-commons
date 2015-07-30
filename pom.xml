@@ -3,6 +3,7 @@
 	<groupId>de.vandermeer</groupId>
 	<artifactId>skb-commons</artifactId>
 	<version>0.0.4</version>
+	<packaging>jar</packaging>
 
 	<name>SKB Commons</name>
 	<url>https://github.com/vdmeer/skb-java-commons</url>
@@ -16,7 +17,6 @@
 		<project.resources.sourceEncoding>UTF-8</project.resources.sourceEncoding>
 		<encoding>UTF-8</encoding>
 		<file.encoding>UTF-8</file.encoding>
-
 	</properties>
 
 	<licenses>
@@ -48,7 +48,7 @@
 	<scm>
 		<developerConnection>scm:git:git@github.com:vdmeer/skb-java-commons.git</developerConnection>
 		<connection>scm:git:git://github.com/vdmeer/skb-java-commons.git</connection>
-		<tag>skb-commons-0.0.3</tag>
+		<tag>skb-commons-0.0.4</tag>
 		<url>https://github.com/vdmeer/skb-java-commons</url>
 	</scm>
 
@@ -232,6 +232,6 @@
 			</plugin>
 		</plugins>
 	</build>
-	<packaging>jar</packaging>
+
 
 </project>

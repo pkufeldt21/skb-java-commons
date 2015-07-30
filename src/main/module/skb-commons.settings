@@ -1,4 +1,5 @@
 skb.module.version=0.0.4
+skb.module.alias=commons
 skb.module.name=SKB Commons
 skb.module.url=https://github.com/vdmeer/skb-java-commons
 skb.module.description=Common SKB classes: tranformers, tables, CLI
